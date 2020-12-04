@@ -1,0 +1,31 @@
+<?php
+/**
+ * @file
+ * Custom functions for Example module.
+ */
+
+function get_values ()
+{
+  $values = array('fruit'=>'apples','fruit'=>'oranges','fruit'=>'pears','vegetable'=>'carrots');
+  return $values;
+}
+
+function example_create_list ($fruits)
+{
+  $list = '<ul>';
+  foreach($fruits as $fruit) {
+    $list .= '<li>'.$fruit.'</li>';
+  }
+  $list .= "</ul>";
+  return $list;
+}
+
+function example_preprocess_node (&$variables)
+{
+  $fruits=_get_values();
+  if(!empty($fruits)){
+    $variables["list"]=example_create_list($fruits);
+  } else {
+    $variables["list"]=NULL;
+  }
+}
